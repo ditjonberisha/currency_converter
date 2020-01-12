@@ -1,0 +1,36 @@
+<% if notice %>
+<div class="alert alert-success">
+    <strong><%= notice %></strong>
+</div>
+<% end %>
+
+<h1>Currencies</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Code</th>
+            <th>Symbol</th>
+            <th width="10%"></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @currencies.each do |currency| %>
+        <tr>
+            <td><%= currency.name %></td>
+            <td><%= currency.code %></td>
+            <td><%= currency.symbol %></td>
+            <td>
+                <%= link_to edit_currency_path(currency) do %><i class="fa fa-edit"></i><% end %> &nbsp;
+                <%= link_to currency, method: :delete, data: { confirm: 'Are you sure?' } do %><i class="fa fa-trash"></i><% end %>
+            </td>
+        </tr>
+    <% end %>
+    </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Currency', new_currency_path %>
