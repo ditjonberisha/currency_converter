@@ -1,0 +1,21 @@
+<div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">From</h4>
+        </div>
+        <div class="card-body">
+            <%= select_tag 'from_currency', options_from_collection_for_select(@currencies, :id, :display_value), class: 'custom-select' %>
+            <input id="from_input" type="text" class="form-control" placeholder="From value">
+        </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">To</h4>
+        </div>
+        <div class="card-body">
+            <%= select_tag 'to_currency', options_from_collection_for_select(@currencies, :id, :display_value), class: 'custom-select' %>
+            <input id="to_input" type="text" class="form-control" placeholder="To value">
+        </div>
+    </div>
+</div>

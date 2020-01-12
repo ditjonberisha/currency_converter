@@ -6,4 +6,8 @@ class Currency < ApplicationRecord
   def api_code
     code.upcase.to_s
   end
+
+  def display_value
+    "#{symbol} #{api_code} (#{name})"
+  end
 end

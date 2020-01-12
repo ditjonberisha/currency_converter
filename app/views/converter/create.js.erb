@@ -1,0 +1,5 @@
+<% if @result[:is_from] %>
+$('#to_input').val('<%= @result[:value] %>');
+<% else %>
+$('#from_input').val('<%= @result[:value] %>');
+<% end %>

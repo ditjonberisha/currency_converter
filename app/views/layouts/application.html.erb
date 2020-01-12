@@ -16,11 +16,16 @@
 
     <body>
         <%= render 'layouts/navigation' %>
-        <div class="container">
-            <%= yield %>
+
+        <main role="main">
+            <div class="container container-margin">
+                <%= yield %>
+            </div>
+
+            <hr class="featurette-divider">
 
             <%= render 'layouts/footer' %>
-        </div>
+        </main>
 
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -30,3 +35,4 @@
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     </body>
 </html>
+
