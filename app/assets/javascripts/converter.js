@@ -20,20 +20,22 @@
         });
     }
 
-    $('body').on('keyup', '#from_input', delay(function (e) {
-        convert_value();
-    }, 500));
+    $(document).on('ready turbolinks:render',function(){
+        $('body').on('keyup', '#from_input', delay(function (e) {
+            convert_value();
+        }, 500));
 
-    $('body').on('keyup', '#to_input', delay(function (e) {
-        convert_value(false);
-    }, 500));
+        $('body').on('keyup', '#to_input', delay(function (e) {
+            convert_value(false);
+        }, 500));
 
-    $('body').on('change', '#from_currency', delay(function (e) {
-        convert_value();
-    }, 100));
+        $('body').on('change', '#from_currency', delay(function (e) {
+            convert_value();
+        }, 100));
 
-    $('body').on('change', '#to_currency', delay(function (e) {
-        convert_value();
-    }, 100));
+        $('body').on('change', '#to_currency', delay(function (e) {
+            convert_value();
+        }, 100));
+    });
 
 })(jQuery);

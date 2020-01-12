@@ -1,0 +1,19 @@
+$("#ratesContainer").CanvasJSChart({
+    animationEnabled: true,
+    title:{
+        text: "Rates"
+    },
+    axisX:{
+        title: "Date",
+    },
+    axisY: {
+        title: "Value",
+        prefix: "$"
+    },
+    data: [
+        {
+            type: "splineArea",
+            dataPoints: JSON.parse("<%= escape_javascript (@rates.map { |r| { x: r.date.day, y: r.value }}).to_json.html_safe %>")
+        }
+    ]
+});
