@@ -14,7 +14,7 @@ class Currency < ApplicationRecord
   has_many :rates, foreign_key: :from_currency_id, dependent: :destroy
   has_many :inverse_rates, class_name: 'Rate', foreign_key: :to_currency_id, dependent: :destroy
 
-  validates :name, :code, presence: true
+  validates :name, :code, presence: true, uniqueness: true
 
   def api_code
     code.upcase.to_s

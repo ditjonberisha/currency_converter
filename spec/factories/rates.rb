@@ -23,5 +23,9 @@
 
 FactoryBot.define do
   factory :rate do
+    from_currency { create(:currency, name: 'Euro', code: 'EUR', symbol: '€') }
+    to_currency { create(:currency, name: 'United States Dollar', code: 'USD', symbol: '$') }
+    date { Date.today }
+    value { Faker::Number.number }
   end
 end
