@@ -1,2 +1,33 @@
+<%= form_tag rates_path, method: :get do %>
+<div class="form-row">
+    <div class="form-group col-md-3">
+        <label for="from_currency">From Currency</label>
+        <%= select_tag 'from_currency', options_from_collection_for_select(@currencies, :id, :display_value, selected: params[:from_currency]), class: 'custom-select' %>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="to_currency">To Currency</label>
+        <%= select_tag 'to_currency', options_from_collection_for_select(@currencies, :id, :display_value, selected: params[:to_currency]), class: 'custom-select' %>
+    </div>
+    <div class="form-group col-md-3">
+        <label for="from_date">From Date</label>
+        <input type="text" class="form-control datepicker" name="from_date" id="from_date" value="<%= params[:from_date] %>">
+    </div>
+    <div class="form-group col-md-3">
+        <label for="to_date">To Date</label>
+        <input type="text" class="form-control datepicker" name="to_date" id="to_date" value="<%= params[:to_date] %>">
+    </div>
+</div>
+<div class="form-row">
+    <button class="btn btn-primary searchRates">Search</button>
+</div>
+<% end %>
 
-<div id="ratesContainer" style="width:100%; height:300px;"></div>
+<br>
+
+<div id="ratesContainer" style="width:100%; height:300px;">
+    <% if @results.blank? %>
+        No results!
+    <% else %>
+        <%= line_chart @results.map { |r| [r.date, r.value] } %>
+    <% end %>
+</div>

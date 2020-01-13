@@ -4,11 +4,7 @@ Rails.application.routes.draw do
 
   post '/converter', to: 'converter#create'
 
-  resources :rates, only: [:index] do
-    collection do
-      get 'results'
-    end
-  end
+  resources :rates, only: [:index]
 
   root 'converter#index'
 end

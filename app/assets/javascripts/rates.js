@@ -1,18 +1,9 @@
 (function($){
 
-    function rates () {
-        if (!$('#ratesContainer').length) {
-            return;
-        }
-
-        $.ajax({
-            type: 'GET',
-            url: '/rates/results'
-        });
-    }
-
     $(document).on('ready turbolinks:render',function(){
-        rates();
+        $( ".datepicker" ).datepicker({
+            dateFormat: 'yy-mm-dd'
+        });
     });
 
 })(jQuery);
