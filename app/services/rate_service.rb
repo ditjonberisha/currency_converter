@@ -16,10 +16,11 @@ class RateService < BaseService
       currencies.each do |from_currency|
         currencies.each do |to_currency|
           next if from_currency == to_currency
-          Rate.create(from_currency: from_currency,
-                      to_currency: to_currency,
-                      value: rate_value(api_rates, from_currency, to_currency),
-                      date: Date.today)
+          rate = Rate.find_or_initialize_by(from_currency: from_currency,
+                                            to_currency: to_currency,
+                                            date: Date.today)
+          rate.value = rate_value(api_rates, from_currency, to_currency)
+          rate.save
         end
       end
     end
