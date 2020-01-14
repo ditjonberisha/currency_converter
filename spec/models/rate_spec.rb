@@ -41,17 +41,32 @@ RSpec.describe Rate, type: :model do
     end
 
     it 'should return N/A if rate is missing' do
-      params = { from: 1, to: 2, value: 10 }
+      params = { from: 1, to: nil, value: 10 }
       expect(Rate.convert_value(params)).to eq('N/A')
     end
 
     it 'should return converted value' do
-      from_currency = create(:currency)
-      to_currency = create(:currency)
+      from_currency = create(:currency, name: 'from', code: 'from')
+      to_currency = create(:currency, name: 'to', code: 'to')
       rate = create(:rate, from_currency: from_currency, to_currency: to_currency, date: Date.today, value: 1.5)
-      params = { from: 1, to: 2, value: 10 }
+      params = { from: from_currency.id, to: to_currency.id, value: 10 }
       exp_value = params[:value] * rate.value
+
       expect(Rate.convert_value(params)).to eq(exp_value)
+    end
+  end
+
+  describe '.search' do
+    it 'should return rates' do
+      from_currency = create(:currency, name: 'from', code: 'from')
+      to_currency = create(:currency, name: 'to', code: 'to')
+      from_date = Date.today - 1.week
+      to_date = Date.today
+      rate = create(:rate, from_currency: from_currency, to_currency: to_currency, date: from_date)
+      create(:rate, from_currency: from_currency, to_currency: to_currency, date: from_date - 1.day)
+      params = { from_currency: from_currency, to_currency: to_currency, from_date: from_date, to_date: to_date }
+
+      expect(Rate.search(params)).to eq([rate])
     end
   end
 end

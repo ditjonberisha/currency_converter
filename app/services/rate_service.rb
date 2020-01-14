@@ -3,7 +3,7 @@ class RateService < BaseService
   attr_accessor :base_source
 
   def call
-    return if currencies.nil?
+    return if currencies.blank?
 
     api_rates = CurrencyLayerService.call
     return if api_rates.blank?
